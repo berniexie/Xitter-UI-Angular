@@ -1,26 +1,45 @@
 angular.module('postList').
 	component('postList', {
 		templateUrl:'components/post-list/post-list.template.html',
-	  controller: function PostListController($http) {
-	  	var self = this;
-	   	self.name = "XitterApp";
-			self.orderProp = 'score';
+	  controller: [
+		  '$http',
+		  function PostListController($http) {
+		  	var self = this;
+		   	self.name = "XitterApp";
+				self.orderProp = 'score';
 
-			// $http.get('')
-			// .then(function(res) {
-			// 	self.posts = res.data;
-			// });
-
-			this.addNew = function() {
-				if(this.inputTitle != null && this.inputText != null) {
-					this.posts.push({
-						id: 0,
-						title: this.inputTitle,
-						text: this.inputText,
-						timeCreate: '',
-						score: 5000
+				self.pullImages = function() {
+					$http.get('http://xitter3.us-west-2.test.expedia.com/base')
+					.then(function successCallback(res) {
+						console.log(res);
+						self.posts = res.data;
+					}, function errorCallback(err) {
+						console.log(err);
 					});
 				}
-			};
-		}
+
+				self.addNew = function() {
+					if(self.inputTitle != null && self.inputText != null) {
+						var newPost = 
+						{
+							id: 0,
+							title: self.inputTitle,
+							text: self.inputText,
+							timeCreate: '',
+							score: 0
+						};
+
+						$http.post('', newPost)
+						.then(function successCallback(res) {
+							self.pullImages;
+						}, function errorCallback(err) {
+							console.log(err);
+						})
+					}
+				};
+
+				//Pull images for the first time
+				self.pullImages();
+			}
+		]
 	});

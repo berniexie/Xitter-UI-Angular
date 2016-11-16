@@ -13,6 +13,8 @@
 </div>
 <ul class="posts">
   <li ng-repeat="post in $ctrl.posts | orderBy:$ctrl.orderProp:true">
+  	<button>upvote</button>
+  	<button>downvote</button>
     <h3>{{post.title}}</h3>
     <p>{{post.text}}</p>
   </li>
