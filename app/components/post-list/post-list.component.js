@@ -29,8 +29,9 @@ angular.module('postList').
 							score: 0
 						};
 
-						$http.post('', newPost)
+						$http.post('http://xitter3.us-west-2.test.expedia.com/post', newPost)
 						.then(function successCallback(res) {
+							console.log(res);
 							self.pullImages;
 						}, function errorCallback(err) {
 							console.log(err);
