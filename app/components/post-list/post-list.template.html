@@ -1,21 +1,30 @@
-<div class="post-creation">
-	<p>{{$ctrl.name}}</p>
-  <input type="text" ng-model="$ctrl.inputTitle" />
-  <input type="text" ng-model="$ctrl.inputText" />
-  <button ng-click="$ctrl.addNew()">Submit Post</button>
-  <p>
-  	Sort by:
-  	<select ng-model="$ctrl.orderProp">
-  		<option value="score">Hot</option>
-  		<option value="timeCreated">New</option>
-  	</select>
-  </p>
+<div class="post-list-container">
+  <div class="post-creation">
+  	<p>{{$ctrl.name}}</p>
+    <div class="create-post">
+      <input type="text" ng-model="$ctrl.inputTitle" />
+      <input type="text" ng-model="$ctrl.inputText" />
+      <button ng-click="$ctrl.addNew()">Submit Post</button>
+    </div>
+    <p>
+    	Sort by:
+    	<select ng-model="$ctrl.orderProp">
+    		<option value="score">Hot</option>
+    		<option value="timeCreated">New</option>
+    	</select>
+    </p>
+  </div>
+  <ul class="posts">
+    <li class="post-line" ng-repeat="post in $ctrl.posts | orderBy:$ctrl.orderProp:true">
+      <p>{{post.score}}</p>
+      <div class="vote-buttons">
+      	<button ng-click="$ctrl.vote(post.id, true)">&uarr;</button>
+      	<button ng-click="$ctrl.vote(post.id, false)">&darr;</button>
+      </div>
+      <div class="post-content">
+        <h3>{{post.title}}</h3>
+        <p>{{post.text}}</p>
+      </div>
+    </li>
+  </ul>
 </div>
-<ul class="posts">
-  <li ng-repeat="post in $ctrl.posts | orderBy:$ctrl.orderProp:true">
-  	<button>upvote</button>
-  	<button>downvote</button>
-    <h3>{{post.title}}</h3>
-    <p>{{post.text}}</p>
-  </li>
-</ul>

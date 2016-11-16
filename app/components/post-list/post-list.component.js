@@ -8,7 +8,7 @@ angular.module('postList').
 		   	self.name = "XitterApp";
 				self.orderProp = 'score';
 
-				self.pullImages = function() {
+				self.pullPosts = function() {
 					$http.get('http://xitter3.us-west-2.test.expedia.com/base')
 					.then(function successCallback(res) {
 						console.log(res);
@@ -22,25 +22,44 @@ angular.module('postList').
 					if(self.inputTitle != null && self.inputText != null) {
 						var newPost = 
 						{
-							id: 0,
 							title: self.inputTitle,
-							text: self.inputText,
-							timeCreate: '',
-							score: 0
+							text: self.inputText
 						};
 
 						$http.post('http://xitter3.us-west-2.test.expedia.com/post', newPost)
 						.then(function successCallback(res) {
 							console.log(res);
-							self.pullImages;
+							self.pullPosts();
 						}, function errorCallback(err) {
 							console.log(err);
 						})
 					}
 				};
 
+				self.vote = function(postId, voteType) {
+					var post = _.find(self.posts, function(post) {
+						return post.id = postId;
+					})
+
+					// voteType ? function() {
+					// 	post.upvotes++;
+					// 	post.score++;
+					// } : function() {
+					// 	post.downvotes++;
+					// 	post.score--;
+					// }
+
+					$http.post('http://xitter3.us-west-2.test.expedia.com/vote/post?postId=' + postId + '&vote=' + voteType)
+						.then(function successCallback(res) {
+							console.log(res);
+							self.pullPosts();
+						}, function errorCallback(err) {
+							console.log(err);
+						})
+				};
+
 				//Pull images for the first time
-				self.pullImages();
+				self.pullPosts();
 			}
 		]
 	});

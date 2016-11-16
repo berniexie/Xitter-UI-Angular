@@ -15,15 +15,19 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-  <post-list></post-list>
+  <div ng-view></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
 <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="app.module.js"></script>
+<script src="app.config.js"></script>
 <script src="components/post-list/post-list.module.js"></script>
 <script src="components/post-list/post-list.component.js"></script>
+<script src="components/post-detail/post-detail.module.js"></script>
+<script src="components/post-detail/post-detail.component.js"></script>
 </body>
 </html>
