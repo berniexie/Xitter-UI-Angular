@@ -28,7 +28,6 @@ angular.module('postDetail')
 
 					$http.post('http://xitter3.us-west-2.test.expedia.com/vote/post?postId=' + postId + '&vote=' + voteType)
 						.then(function successCallback(res) {
-							console.log(res);
 							self.getPost(self.postId);
 						}, function errorCallback(err) {
 							console.log(err);
@@ -42,7 +41,6 @@ angular.module('postDetail')
 				self.getComments = function(postId) {
 					$http.get('http://xitter3.us-west-2.test.expedia.com/comments/post/' + postId)
 					.then(function successCallback(res) {
-						console.log(res)
 						self.postComments = res.data;
 					}, function errorCallback(err) {
 						console.log(err);
@@ -52,7 +50,6 @@ angular.module('postDetail')
 				self.voteComment = function(commentId, voteType) {
 					$http.post('http://xitter3.us-west-2.test.expedia.com/vote/comment?commentId=' + commentId + "&vote=" + voteType + "&postId=" + self.postId)
 						.then(function successCallback(res) {
-							console.log(res);
 							self.getComments(self.postId);
 						}, function errorCallback(err) {
 							console.log(err);
@@ -72,7 +69,6 @@ angular.module('postDetail')
 
 					$http.post('http://xitter3.us-west-2.test.expedia.com/comments/post/' + self.postId, comment)
 						.then(function successCallback(res) {
-							console.log(res);
 							self.getComments(self.postId);
 						}, function errorCallback(err) {
 							console.log(err);
