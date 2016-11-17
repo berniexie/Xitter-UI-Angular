@@ -49,6 +49,9 @@ angular.module('postList').
 
 				//Pull images for the first time
 				self.pullPosts();
+				$(document).ready(function() {
+			    $('select').material_select();
+			  });
 			}
 		]
 	});
