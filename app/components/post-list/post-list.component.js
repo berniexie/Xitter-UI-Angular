@@ -11,7 +11,6 @@ angular.module('postList').
 				self.pullPosts = function() {
 					$http.get('http://xitter3.us-west-2.test.expedia.com/base')
 					.then(function successCallback(res) {
-						console.log(res);
 						self.posts = res.data;
 					}, function errorCallback(err) {
 						console.log(err);
@@ -28,7 +27,6 @@ angular.module('postList').
 
 						$http.post('http://xitter3.us-west-2.test.expedia.com/post', newPost)
 						.then(function successCallback(res) {
-							console.log(res);
 							self.pullPosts();
 						}, function errorCallback(err) {
 							console.log(err);
@@ -43,7 +41,6 @@ angular.module('postList').
 
 					$http.post('http://xitter3.us-west-2.test.expedia.com/vote/post?postId=' + postId + '&vote=' + voteType)
 						.then(function successCallback(res) {
-							console.log(res);
 							self.pullPosts();
 						}, function errorCallback(err) {
 							console.log(err);
@@ -52,6 +49,9 @@ angular.module('postList').
 
 				//Pull images for the first time
 				self.pullPosts();
+				$(document).ready(function() {
+			    $('select').material_select();
+			  });
 			}
 		]
 	});

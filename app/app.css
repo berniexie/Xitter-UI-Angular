@@ -4,10 +4,6 @@
 	margin: 0;
 }
 
-.create-post {
-	padding: 1em;
-}
-
 .post-list-container {
 	display: flex;
 	flex-direction: column;
@@ -20,10 +16,19 @@
 	padding: 1em;
 }
 
+.post-score, .comment-score{
+	min-width: 20px;
+}
+
+.btn {
+	margin: 3px;
+}
+
 .vote-buttons {
 	display: flex;
 	flex-direction: column;
 	padding: 1em;
+	align-items: center;
 }
 
 .post-content {
@@ -53,11 +58,14 @@
 	width: 100%;
 	padding: 1em;
 	align-items: center;
-	border-style: solid;
-	border-width: 2px;
 }
 
 .comment-vote-buttons {
+	display: flex;
+	flex-direction: column;
+}
+
+.comment-text-area {
 	display: flex;
 	flex-direction: column;
 }
