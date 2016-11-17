@@ -100,7 +100,6 @@ angular.module('postDetail')
 					.then(function successCallback(res) {
 						window.location.replace('/#!/all')
 					}, function errorCallback(err) {
-						window.location.replace('/#!/all')
 						console.log(err);
 					})
 				}

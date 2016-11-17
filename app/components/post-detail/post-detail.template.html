@@ -41,7 +41,7 @@
 				<a class="btn waves-effect waves-light" ng-click="$ctrl.deletePost()">Delete</a>
 				<div class="comment-input" ng-hide="$ctrl.commentBoxShow">
 					<input class="comment-input-box" ng-model="$ctrl.commentInput"/>
-					<a class="btn waves-effect waves-lightng-click">Submit Comment</a>
+					<a class="btn waves-effect waves-lightng-click" ng-click="$ctrl.submitComment()">Submit Comment</a>
 				</div>
 			</div>
 			<div ui-tree id="tree-root" ng-if="$ctrl.postComments.length">
