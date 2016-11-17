@@ -1,5 +1,6 @@
 var app = angular.module('XitterApp', [
 	'ngRoute',
 	'postList',
-	'postDetail'
+	'postDetail',
+	'ui.tree'
 ]);

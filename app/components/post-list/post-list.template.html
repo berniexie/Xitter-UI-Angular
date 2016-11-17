@@ -21,10 +21,12 @@
       	<button ng-click="$ctrl.vote(post.id, true)">&uarr;</button>
       	<button ng-click="$ctrl.vote(post.id, false)">&darr;</button>
       </div>
-      <div class="post-content">
-        <h3>{{post.title}}</h3>
-        <p>{{post.text}}</p>
-      </div>
+      <a href="#!/post/{{post.id}}">
+        <div class="post-content">
+          <h3>{{post.title}}</h3>
+          <p>{{post.text}}</p>
+        </div>
+      </a>
     </li>
   </ul>
 </div>

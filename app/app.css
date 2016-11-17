@@ -29,3 +29,35 @@
 .post-content {
 	flex-direction: column;
 }
+
+.post-title-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.post .post-content {
+	flex-direction: column;
+}
+
+.comments-container { 
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+}
+
+.comment-item-line {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 1em;
+	align-items: center;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.comment-vote-buttons {
+	display: flex;
+	flex-direction: column;
+}

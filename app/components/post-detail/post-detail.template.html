@@ -1,0 +1,48 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+	<div class="tree-node tree-node-content">
+		<div class="comment-item-line">
+			<p>{{comment.score}}</p>
+	    <div class="comment-vote-buttons">
+	    	<button ng-click="$ctrl.voteComment(comment.id, true)">&uarr;</button>
+	    	<button ng-click="$ctrl.voteComment(comment.id, false)">&darr;</button>
+	    </div>
+	    <p>{{comment.text}}</p>
+    </div>
+    <button ng-click="$ctrl.prepareComment(comment.id)">reply</button>
+	</div>
+  <ol ui-tree-nodes="" ng-model="$comment.comments" ng-class="{hidden: collapsed}">
+    <li ng-repeat="comment in comment.comments | orderBy:$ctrl.orderProp:true" ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+</script>
+
+<div class="post-detail-container">
+	<div class="post">
+		<div class="post-title-row">
+	    <p>{{$ctrl.post.score}}</p>
+	    <div class="vote-buttons">
+	    	<button ng-click="$ctrl.vote($ctrl.post.id, true)">&uarr;</button>
+	    	<button ng-click="$ctrl.vote($ctrl.post.id, false)">&darr;</button>
+	    </div>
+			<h3>{{$ctrl.post.title}}<h3>
+		</div>
+		<p>{{$ctrl.post.text}}</p>
+	</div>
+	<div class="comments-container" >
+		<div ui-tree>
+			<h3>Comments</h3>
+			<div class="comment-box">
+				<button ng-click="$ctrl.showCommentBox()" ng-hide="!$ctrl.commentBoxShow">Write Comment</button>
+				<div class="comment-input" ng-hide="$ctrl.commentBoxShow">
+					<input class="comment-input-box" ng-model="$ctrl.commentInput"/>
+					<button ng-click="$ctrl.submitComment()">Submit Comment</button>
+				</div>
+			</div>
+			<div ui-tree id="tree-root" ng-if="$ctrl.postComments.length">
+	      <ol ui-tree-nodes ng-model="$ctrl.postComments">
+	        <li ng-repeat="comment in $ctrl.postComments | orderBy:$ctrl.orderProp:true" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+	      </ol>
+	    </div>
+		</div>
+	</div>
+</div>

@@ -41,14 +41,6 @@ angular.module('postList').
 						return post.id = postId;
 					})
 
-					// voteType ? function() {
-					// 	post.upvotes++;
-					// 	post.score++;
-					// } : function() {
-					// 	post.downvotes++;
-					// 	post.score--;
-					// }
-
 					$http.post('http://xitter3.us-west-2.test.expedia.com/vote/post?postId=' + postId + '&vote=' + voteType)
 						.then(function successCallback(res) {
 							console.log(res);
