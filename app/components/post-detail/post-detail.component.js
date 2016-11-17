@@ -86,6 +86,15 @@ angular.module('postDetail')
 					self.showCommentBox();
 				}
 
+				self.deleteComment = function(commentId) {
+					$http.delete('http://xitter3.us-west-2.test.expedia.com/comment/' + commentId)
+					.then(function successCallback(res) {
+							self.getComments(self.postId);
+						}, function errorCallback(err) {
+							console.log(err);
+						})
+				}
+
 
 				self.getPost(self.postId);
 				self.getComments(self.postId);
