@@ -86,6 +86,23 @@ angular.module('postDetail')
 					self.showCommentBox();
 				}
 
+				self.deleteComment = function(commentId) {
+					$http.delete('http://xitter3.us-west-2.test.expedia.com/comments/' + commentId)
+					.then(function successCallback(res) {
+						self.getComments(self.postId);
+					}, function errorCallback(err) {
+						console.log(err);
+					})
+				}
+
+				self.deletePost = function() {
+					$http.delete('http://xitter3.us-west-2.test.expedia.com/post/' + self.postId)
+					.then(function successCallback(res) {
+						window.location.replace('/#!/all')
+					}, function errorCallback(err) {
+						console.log(err);
+					})
+				}
 
 				self.getPost(self.postId);
 				self.getComments(self.postId);
