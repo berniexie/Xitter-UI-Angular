@@ -1,0 +1,35 @@
+<div class="post-list-container">
+  <div class="post-creation">
+  	<h3>{{$ctrl.name}}</h3>
+    <div class="container create-post">
+      <p>Title:</p>
+      <input type="text" ng-model="$ctrl.inputTitle" />
+      <p>Text:</p>
+      <input type="text" ng-model="$ctrl.inputText" />
+      <a class ="btn waves-effect waves-light" ng-click="$ctrl.addNew()">Submit Post</a>
+    </div>
+    <div class="container input-field sort-selector">
+    	<select ng-model="$ctrl.orderProp">
+    		<option value="score">Hot</option>
+    		<option value="timeCreated">New</option>
+    	</select>
+      <label>Sort by:</label>
+    </div>
+  </div>
+  <ul class="posts">
+    <li class="post-line" ng-repeat="post in $ctrl.posts | orderBy:$ctrl.orderProp:true">
+      <div class="vote-buttons">
+        <a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.vote(post.id, true)"><i class="material-icons">thumb_up</i></a>
+        <a class="btn red post-score">{{post.score}}</a>
+        <a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.vote(post.id, false)"><i class="material-icons">thumb_down</i></a>
+      </div>
+      <a href="#!/post/{{post.id}}">
+        <div class="post-content">
+          <h3>{{post.title}}</h3>
+          <p>{{post.text}}</p>
+          <p>Comments count: {{post.comments}}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
