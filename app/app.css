@@ -50,6 +50,10 @@ a {
 	text-decoration: underline;
 }
 
+.posts .collection-item:hover {
+	background-color: #b2dfdb;
+}
+
 .post, .post-content {
 	display: flex;
 	flex-direction: column;
