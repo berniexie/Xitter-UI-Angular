@@ -37,6 +37,7 @@
 		<div ui-tree>
 			<div class="container comment-box">
 				<h3>Comments</h3>
+				<p>{{$ctrl.commentStatus}}</p>
 				<a class ="btn waves-effect waves-light" ng-click="$ctrl.showCommentBox()" ng-hide="!$ctrl.commentBoxShow">Write Comment</a>
 				<a class="btn waves-effect waves-light" ng-click="$ctrl.deletePost()">Delete</a>
 				<div class="comment-input" ng-hide="$ctrl.commentBoxShow">
