@@ -3,7 +3,7 @@
 		<div class="collection-item comment-item-line">
 	    <div class="vote-buttons">
 		    <a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.voteComment(comment.id, true)"><i class="material-icons">thumb_up</i></a>
-				<a class="btn red comment-score">{{comment.score}}</a>
+				<a class="comment-score">{{comment.score}}</a>
 		    <a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.voteComment(comment.id, false)"><i class="material-icons">thumb_down</i></a>
 	    </div>
 	    <div class="container coment-text-area">
@@ -13,8 +13,8 @@
 	    </div>
     </div>
 	</div>
-  <ol ui-tree-nodes="" ng-model="$comment.comments" ng-class="{hidden: collapsed}">
-    <li ng-repeat="comment in comment.comments | orderBy:$ctrl.orderProp:true" ng-include="'nodes_renderer.html'">
+  <ol class="collection" ui-tree-nodes="" ng-hide="!comment.comments.length" ng-model="$comment.comments" ng-class="{hidden: collapsed}">
+    <li class="collection-item" ng-repeat="comment in comment.comments | orderBy:$ctrl.orderProp:true" ng-include="'nodes_renderer.html'">
     </li>
   </ol>
 </script>
@@ -24,12 +24,12 @@
 		<div class="post-title-row">
 	    <div class="vote-buttons">
 	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.votePost($ctrl.post.id, true)"><i class="material-icons">thumb_up</i></a>
-		    <a class="btn red post-score">{{$ctrl.post.score}}</a>
+		    <a class="post-score">{{$ctrl.post.score}}</a>
 	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.votePost($ctrl.post.id, false)"><i class="material-icons">thumb_down</i></a>
 	    </div>
 	    <div class="post-content">
-				<h3>{{$ctrl.post.title}}</h3>
-				<p>{{$ctrl.post.text}}</p>
+				<span class="post-title">{{$ctrl.post.title}}</span>
+				<span class="post-text">{{$ctrl.post.text}}</span>
 	    </div>
 		</div>
 	</div>
