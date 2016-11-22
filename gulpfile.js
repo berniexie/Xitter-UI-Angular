@@ -100,4 +100,4 @@ gulp.task('dev', function() {
   // Run the watch task, to keep taps on changes
 });
 
-gulp.task('default', ['dev', 'bower', 'watch']);
+gulp.task('default', ['dev', 'browserify', 'bower', 'watch']);
