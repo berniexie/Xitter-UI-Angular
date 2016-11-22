@@ -21,14 +21,14 @@ angular.module('XitterApp', [
   }
 ]);
 
-PostListController.$inject = ['$http'];
+PostListController.$inject = ['$scope', '$http'];
 angular.module('postList', [])
 .component('postList', {
   templateUrl:'post-list/post-list.template.html',
   controller: PostListController
 });
 
-PostDetailController.$inject = ['$http', '$routeParams'];
+PostDetailController.$inject = ['scope', '$http', '$routeParams'];
 angular.module('postDetail', ['ngRoute'])
 .component('postDetail', {
   templateUrl:'post-detail/post-detail.template.html',

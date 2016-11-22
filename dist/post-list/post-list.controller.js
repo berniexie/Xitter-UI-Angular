@@ -1,16 +1,21 @@
-var PostListController = function ($http) {
+var Q = require('q');
+var postHelper = require('../../helpers/postHelper');
+
+var PostListController = function ($scope, $http) {
 	var self = this;
 	self.name = "XitterApp";
 	self.orderProp = 'score';
 
 	self.pullPosts = function() {
-		$http.get('http://xitter3.us-west-2.test.expedia.com/base')
-		.then(function successCallback(res) {
+		postHelper.pullPosts($http)
+		.then(function(res) {
 			self.posts = res.data;
-		}, function errorCallback(err) {
-			console.log(err);
+			$scope.$apply();
+		})
+		.fail(function(error) {
+			console.log(error);
 		});
-	}
+	};
 
 	self.addNew = function() {
 		if(self.inputTitle != null && self.inputText != null) {
@@ -20,10 +25,13 @@ var PostListController = function ($http) {
 				text: self.inputText
 			};
 
-			$http.post('http://xitter3.us-west-2.test.expedia.com/post', newPost)
-			.then(function successCallback(res) {
+			postHelper.addNewPost($http, newPost)
+			.then(function(res) {
 				self.pullPosts();
-			}, function errorCallback(err) {
+				self.inputTitle = '';
+				self.inputText = '';
+			})
+			.fail(function(err) {
 				console.log(err);
 			})
 		}

@@ -1,17 +1,21 @@
-var PostListController = function ($http) {
+var Q = require('q');
+var postHelper = require('../../helpers/postHelper');
+
+var PostListController = function ($scope, $http) {
 	var self = this;
 	self.name = "XitterApp";
 	self.orderProp = 'score';
 
 	self.pullPosts = function() {
-		console.log("pulling posts");
-		$http.get('http://xitter3.us-west-2.test.expedia.com/base')
-		.then(function successCallback(res) {
+		postHelper.pullPosts($http)
+		.then(function(res) {
 			self.posts = res.data;
-		}, function errorCallback(err) {
-			console.log(err);
+			$scope.$apply();
+		})
+		.fail(function(error) {
+			console.log(error);
 		});
-	}
+	};
 
 	self.addNew = function() {
 		if(self.inputTitle != null && self.inputText != null) {
@@ -21,26 +25,28 @@ var PostListController = function ($http) {
 				text: self.inputText
 			};
 
-			$http.post('http://xitter3.us-west-2.test.expedia.com/post', newPost)
-			.then(function successCallback(res) {
+			postHelper.addNewPost($http, newPost)
+			.then(function(res) {
 				self.pullPosts();
-			}, function errorCallback(err) {
+				self.inputTitle = '';
+				self.inputText = '';
+				self.postStatus = 'Post successful!';
+			})
+			.fail(function(err) {
 				console.log(err);
+				self.postStatus = 'Post failed!';
 			})
 		}
 	};
 
 	self.vote = function(postId, voteType) {
-		var post = _.find(self.posts, function(post) {
-			return post.id = postId;
+		postHelper.vote($http, postId, voteType)
+		.then(function(res) {
+			self.pullPosts();
 		})
-
-		$http.post('http://xitter3.us-west-2.test.expedia.com/vote/post?postId=' + postId + '&vote=' + voteType)
-			.then(function successCallback(res) {
-				self.pullPosts();
-			}, function errorCallback(err) {
-				console.log(err);
-			})
+		.fail(function(err) {
+			console.log(err);
+		})
 	};
 
 	//Pull images for the first time
