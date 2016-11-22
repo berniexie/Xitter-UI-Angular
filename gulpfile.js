@@ -54,11 +54,19 @@ gulp.task('views', function() {
   gulp.src('./app/components/**/*')
   // Will be put in the dist/views folder
   .pipe(gulp.dest('dist/'));
+
+  //temporarily here!! --------------------------------------------
+  gulp.src('./app/app.css')
+  .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('bower', function() {
-	gulp.src('./app/bower_components/**/*.min.js')
-	.pipe(gulp.dest('dist/'));
+	gulp.src([
+    './app/bower_components/**/*min.js',
+    './app/bower_components/**/*min.css',
+    './app/bower_components/**/*.map'
+    ])
+	.pipe(gulp.dest('dist/bower_components'));
 });
 // gulp.task('watch', function() {
 //   gulp.watch('./app/less/*.less', ['less', 'concat-css']);
@@ -66,7 +74,7 @@ gulp.task('bower', function() {
 //   gulp.watch('./app/**/*.html', browserSync.reload);
 // })
 
-gulp.watch(['app/index.html', 'app/components/**/*.html'], [
+gulp.watch(['app/index.html', 'app/components/**/*.html', 'app/app.css'], [
   'views'
 ]);
 
@@ -100,4 +108,4 @@ gulp.task('dev', function() {
   // Run the watch task, to keep taps on changes
 });
 
-gulp.task('default', ['dev', 'browserify', 'bower', 'watch']);
+gulp.task('default', ['dev', 'browserify', 'views', 'bower', 'watch']);

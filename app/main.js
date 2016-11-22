@@ -28,7 +28,7 @@ angular.module('postList', [])
   controller: PostListController
 });
 
-PostDetailController.$inject = ['scope', '$http', '$routeParams'];
+PostDetailController.$inject = ['$scope', '$http', '$routeParams'];
 angular.module('postDetail', ['ngRoute'])
 .component('postDetail', {
   templateUrl:'post-detail/post-detail.template.html',
