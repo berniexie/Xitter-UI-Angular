@@ -23,9 +23,9 @@
 	<div class="container post">
 		<div class="post-title-row">
 	    <div class="vote-buttons">
-	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.vote($ctrl.post.id, true)"><i class="material-icons">thumb_up</i></a>
+	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.votePost($ctrl.post.id, true)"><i class="material-icons">thumb_up</i></a>
 		    <a class="btn red post-score">{{$ctrl.post.score}}</a>
-	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.vote($ctrl.post.id, false)"><i class="material-icons">thumb_down</i></a>
+	    	<a class ="btn-floating waves-effect waves-light" ng-click="$ctrl.votePost($ctrl.post.id, false)"><i class="material-icons">thumb_down</i></a>
 	    </div>
 	    <div class="post-content">
 				<h3>{{$ctrl.post.title}}</h3>
@@ -37,6 +37,7 @@
 		<div ui-tree>
 			<div class="container comment-box">
 				<h3>Comments</h3>
+				<p>{{$ctrl.commentStatus}}</p>
 				<a class ="btn waves-effect waves-light" ng-click="$ctrl.showCommentBox()" ng-hide="!$ctrl.commentBoxShow">Write Comment</a>
 				<a class="btn waves-effect waves-light" ng-click="$ctrl.deletePost()">Delete</a>
 				<div class="comment-input" ng-hide="$ctrl.commentBoxShow">
