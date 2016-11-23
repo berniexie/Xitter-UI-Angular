@@ -1,10 +1,11 @@
 <div class="post-list-container">
   <div class="post-creation">
     <div class="container create-post">
-      <p>{{$ctrl.postStatus}}</p>
-      <p>Title:</p>
+      <span>{{$ctrl.postStatus}}</p>
+      <h4 class="title">Create Posts</h4>
+      <span>Title:</span>
       <input type="text" ng-model="$ctrl.inputTitle" />
-      <p>Text:</p>
+      <span>Text:</span>
       <input type="text" ng-model="$ctrl.inputText" />
       <a class ="btn waves-effect waves-light" ng-click="$ctrl.addNew()">Submit Post</a>
     </div>

@@ -32,6 +32,10 @@ a {
 	padding: 1em;
 }
 
+.sort-selector {
+	max-width: 50px;
+}
+
 .vote-buttons {
 	display: flex;
 	flex-direction: column;
